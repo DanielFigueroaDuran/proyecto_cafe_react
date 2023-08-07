@@ -5,27 +5,39 @@ import Show from '../Show'
 import Arrow from "../../assets/icon/Icon.png";
 import { getData } from "../../helpers/data";
 import SectionCoffeComponents from '../SectionCoffeComponents';
-import Cesta from '../Cesta';
+//import Cart from './Cart';
 
-const Tienda = ({ children }) => {
+const Tienda = () => {
 
     const { products, cart, setProducts, setCart } = useContext(CoffeContext);
 
-
     //console.log(cart);
 
-    // useEffect(() => {
-    //     getData(apiCoffe).then(data => setProducts(data))
-    // }, [])
 
     const handleClick = (product) => {
 
-        //console.log(product);
+        // console.log(product);
+        setCart(prev => {
+            const productRepeat = prev.find((coffe) => coffe._id === product._id);
+            if (productRepeat) {
+                productRepeat.quanty += 1;
+                return prev;
+            } else {
+                return [...prev, { quanty: 1, ...product }]
+            }
 
-        setCart([...cart, product]);
+        })
 
-        console.log(cart);
+        // const productRepeat = cart.find((coffe) => coffe._id === product._id);
+        // if (productRepeat) {
+        //     setCart(cart.map((item) => (item._id === product._id
+        //         ? { ...product, quanty: productRepeat.quanty + = 1 }
+        //         : item)));
+        // } else {
+        //     setCart([...cart, {quanty: 1 ...product}]);
+        // }
 
+        //console.log(cart);
     };
 
     return (

@@ -4,8 +4,7 @@ import Context from './components/context/Context';
 import Header from './components/Header'
 import CoffePages from './components/pages/CoffeePage';
 import Tienda from './components/pages/Tienda';
-import Cesta from './components/Cesta';
-
+import Cart from './components/pages/Cart';
 
 function App() {
 
@@ -17,7 +16,7 @@ function App() {
                         <Route path="/" element={<Header />}>
                             <Route index element={<CoffePages />} />
                             <Route path='tienda' element={<Tienda />} />
-                            <Route path='/cesta' element={<Cesta />} />
+                            <Route path='/cesta' element={<Cart />} />
                         </Route>
                     </Routes>
                 </BrowserRouter >

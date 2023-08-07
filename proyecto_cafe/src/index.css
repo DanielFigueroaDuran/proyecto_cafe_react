@@ -987,3 +987,34 @@ footer {
   border: none;
   text-align: center;
 }
+
+.productCoffe {
+    display: flex;
+   align-items: center;
+}
+
+.containerProduct {
+    display: flex;
+    flex-direction: column;
+    gap: 19px;
+}
+
+.cartCoffe{
+    display: flex;
+    gap: 3rem;
+}
+
+.cartContainer{
+display: flex;
+justify-content: center;
+align-items: center;
+min-height: 100vh;
+}
+
+.titleCart{
+    color: var(--color00);
+}
+
+.counter{
+    color: var(--color00);
+}

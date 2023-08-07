@@ -1,11 +1,15 @@
-import React from 'react'
-import Minus from "../assets/icon/heroicons-outline_minus-sm.png";
-import Plus from "../assets/icon/heroicons-outline_plus-sm.png"
-import Counter from "../assets/icon/Counter.png";
-import Colombia from "../assets/img/colombia.png";
+import React, { useState } from 'react'
+import { useContext } from 'react';
+import { CoffeContext } from '../context/Context';
+import CartElement from '../CartElement';
+import CartTotal from '../CartTotal';
 
-const Cesta = () => {
-    return (
+const Cart = () => {
+
+    const { cart } = useContext(CoffeContext);
+
+
+    return cart.length > 0 ? (
         <div className="containerCard">
             <div className="titulo cesta">
 
@@ -18,43 +22,12 @@ const Cesta = () => {
                         <div className="separador"></div>
 
                         <div className="counter-container">
-                            <div className="btn">
-                                <button className="btn disminuir">
-                                    <img
-                                        src={Minus}
-                                        alt=""
-                                    />
-                                </button>
-                                <span id="counter"
-                                ><img src={Counter} alt=""
-                                    /></span>
-                                <button className="btn aumentar">
-                                    <img
-                                        src={Plus}
-                                        alt=""
-                                    />
-                                </button>
-                            </div>
 
-                            <div>
-                                <img
-                                    className="article"
-                                    src={Colombia}
-                                    alt="cafe"
-                                />
-                            </div>
+                            {/* ---------------------------Pintando Los productos seleccionados --------------*/}
 
-                            <div className="detailContainer">
-                                <div className="details">
-                                    <p className="paragraphsColor titleProduct">
-                                        Colombia La Casita
-                                    </p>
-                                    <p className="paragraphsColor">Paquete de café, 250 gr</p>
-                                </div>
 
-                                <div className="price">
-                                    <h3 className="frameh3">9,00€</h3>
-                                </div>
+                            <div className='containerProduct'>
+                                {cart.map((product) => <CartElement product={product} key={product._id} />)}
                             </div>
                         </div>
 
@@ -113,10 +86,11 @@ const Cesta = () => {
                         <div className="card-details">
                             <div className="subtotal">
                                 <p>SUBTOTAL</p>
+
                             </div>
 
                             <div id="price" className="price">
-                                {/* <!-- <p className="paragraph">18,00€</p> --> */}
+                                <CartTotal />
                             </div>
                         </div>
 
@@ -139,7 +113,7 @@ const Cesta = () => {
 
                             <div className="frame-total">
                                 <div className="priceIva">
-                                    <p className="paragraph">18,00€</p>
+                                    <p>0,00 €</p>
                                     <div className="smal">
                                         <small className="iva">Incluye 3,78€ de IVA</small>
                                     </div>
@@ -158,7 +132,12 @@ const Cesta = () => {
                 </div>
             </div>
         </div>
-    )
+    ) : (
+        <div className='cartContainer'>
+
+            <h2 className='titleCart'>your cart is empty</h2>
+        </div>
+    );
 }
 
-export default Cesta
+export default Cart
